@@ -5,9 +5,11 @@
       <sourceFolder url="file://$MODULE_DIR$/Atoi/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/RomanToInteger/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/AddTwoNumbers/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Blockchain/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Atoi/target" />
       <excludeFolder url="file://$MODULE_DIR$/RomanToInteger/target" />
       <excludeFolder url="file://$MODULE_DIR$/AddTwoNumbers/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Blockchain/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
