@@ -6,10 +6,16 @@
       <sourceFolder url="file://$MODULE_DIR$/RomanToInteger/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/AddTwoNumbers/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Blockchain/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PrintFooBarAlternately/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PrintInOrder/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BinarySearchTreeIterator/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Atoi/target" />
       <excludeFolder url="file://$MODULE_DIR$/RomanToInteger/target" />
       <excludeFolder url="file://$MODULE_DIR$/AddTwoNumbers/target" />
       <excludeFolder url="file://$MODULE_DIR$/Blockchain/target" />
+      <excludeFolder url="file://$MODULE_DIR$/PrintFooBarAlternately/target" />
+      <excludeFolder url="file://$MODULE_DIR$/PrintInOrder/target" />
+      <excludeFolder url="file://$MODULE_DIR$/BinarySearchTreeIterator/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -162,3 +162,106 @@ fn main() {
     //
     // println!("Валидный ли Blockchain? {}", blockchain.is_chain_valid());
 }
+
+
+mod tests{
+    use super::*;
+    #[test]
+    fn test_block_creation() {
+        let transactions = vec![
+            Transaction {
+                sender: "Alice".to_string(),
+                receiver: "Bob".to_string(),
+                amount: 100.0,
+            }
+        ];
+        let block = Block::new(1, transactions.clone(), "prev_hash".to_string());
+
+        assert_eq!(block.index, 1);
+        //assert_eq!(block.transactions, transactions);
+        assert_eq!(block.previous_hash, "prev_hash");
+        assert!(!block.hash.is_empty());
+    }
+
+    #[test]
+    fn test_hash_calculation() {
+        let transactions = vec![Transaction {
+            sender: "Alice".to_string(),
+            receiver: "Bob".to_string(),
+            amount: 100.0,
+        }];
+
+        let hash1 = Block::calculate_hash(1, 1234567890, &transactions, "prev_hash");
+        let hash2 = Block::calculate_hash(1, 1234567890, &transactions, "prev_hash");
+        let hash3 = Block::calculate_hash(2, 1234567890, &transactions, "prev_hash");
+
+        assert_eq!(hash1, hash2);
+        assert_ne!(hash1, hash3);
+    }
+
+    #[test]
+    fn test_blockchain_initialization() {
+        let blockchain = Blockchain::new();
+        assert_eq!(blockchain.chain.len(), 1);
+        assert_eq!(blockchain.chain[0].index, 0);
+        assert!(blockchain.pending_transactions.is_empty());
+    }
+
+    #[test]
+    fn test_add_transaction() {
+        let mut blockchain = Blockchain::new();
+        let transaction = Transaction {
+            sender: "Alice".to_string(),
+            receiver: "Bob".to_string(),
+            amount: 100.0,
+        };
+
+        blockchain.add_transaction(transaction.clone());
+        assert_eq!(blockchain.pending_transactions.len(), 1);
+        assert_eq!(blockchain.pending_transactions[0].sender, "Alice");
+    }
+
+    #[test]
+    fn test_mine_block() {
+        let mut blockchain = Blockchain::new();
+        blockchain.add_transaction(Transaction {
+            sender: "Alice".to_string(),
+            receiver: "Bob".to_string(),
+            amount: 100.0,
+        });
+        blockchain.mine_block();
+
+        assert_eq!(blockchain.chain.len(), 2);
+        assert_eq!(blockchain.chain[1].index, 1);
+        assert!(blockchain.pending_transactions.is_empty());
+
+        blockchain.add_transaction(Transaction {
+            sender: "Alice".to_string(),
+            receiver: "Bob".to_string(),
+            amount: 100.0,
+        });
+
+        blockchain.mine_block();
+        assert_eq!(blockchain.chain.len(), 3);
+        assert_eq!(blockchain.chain[2].index, 2);
+        assert!(blockchain.pending_transactions.is_empty());
+    }
+
+    #[test]
+    fn test_chain_validation() {
+        let mut blockchain = Blockchain::new();
+        blockchain.add_transaction(Transaction {
+            sender: "Alice".to_string(),
+            receiver: "Bob".to_string(),
+            amount: 100.0,
+        });
+        blockchain.mine_block();
+
+        assert!(blockchain.is_chain_valid());
+
+        // Попробуем изменить данные в блоке
+        blockchain.chain[1].transactions[0].amount = 200.0;
+        assert!(!blockchain.is_chain_valid());
+    }
+
+}
